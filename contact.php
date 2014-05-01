@@ -4,25 +4,25 @@
    { 
      require_once('includes/validation.php');
      
-     $name = $_POST['name'];
-     $email = $_POST['email'];
-     $comment = $_POST['comments'];
+     $name = trim($_POST['name']);
+     $email = trim($_POST['email']);
+     $comments = trim($_POST['comments']);
      $errors = array();
      
    
      $valid = verifyAlphaNum($name);
      if(!$valid)
      {
-       $errors[] = "Name must be letters, numbers, or spaces";  
+       $errors['name'] = "Name must be letters, numbers, or spaces";  
      }
      
      $valid = verifyEmail($email);
      if(!$valid)
      {
-       $error[] = "Please provide a valid email address - test@test.com";
+       $error['email'] = "Please provide a valid email address - test@test.com";
      }
      
-    $message = verifyText($comments);
+    $comments = verifyText($comments);
 	
 	//if any errors, don't send email - else send email
 	if(count($errors) === 0)
@@ -69,17 +69,19 @@
           <legend>Contact Us</legend>
           <p>
           <label for="name">Name:</label>
-          <input type="text" name="name" placeholder="Type your name here"/>
+            <span class="error"><?php echo @$errors['name']; ?></span>
+          <input type="text" name="name" placeholder="Type your name here" value="<?php echo @$_POST['name']; ?>" />
           </p>
           
           <p>
           <label for="email">Email:</label>
-          <input type="text" name="email" placeholder="Type your email here"/>
+          <span class="error"><?php echo @$errors['email']; ?></span>
+          <input type="text" name="email" placeholder="Type your email here" value="<?php echo @$_POST['email']; ?>"/>
           </p>
           
           <p>
           <label for="comments">Comments:</label>
-          <textarea name"comments"  name="comments" placeholder="type your message here"></textarea>
+          <textarea name"comments"  name="comments" placeholder="type your message here"><?php echo @$_POST['comments']; ?></textarea>
           </p>
           
           <p>
@@ -89,7 +91,7 @@
         </fieldset>
      </form>
    </section>
-
+  <?php require_once('includes/footer.php');?>
 
 </body>
 </html>

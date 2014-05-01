@@ -3,3 +3,6 @@
 #contact .contact_link{
     color:red; 
 }
+
+label{display:block;}
+.error{display:block; color:red;}
