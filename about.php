@@ -18,12 +18,18 @@ $db->close();
    <section>
        <h2>About</h2>
        <?php
+         echo '<div id="products">';
           while($row = $myData->fetch_assoc())
           {
-            echo $row['name'] . '<br>';
-            echo $row['price'] . '<br>';
-            echo $row['description'] . '<br>';
+            echo '<div class="product">';
+            echo '<img src="" alt="" />';
+            echo '<h3>' . $row['name'] . '</h3>';
+            echo '<p>$' . $row['price'] . '</p>';
+            echo '<p>' . $row['description'] . '</p>';
+            echo '</div>';
           }
+          echo '<br class="clear">';
+          echo '</div>';
        ?>
    </section>
   <?php require_once('includes/footer.php');?>
