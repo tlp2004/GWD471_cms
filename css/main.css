@@ -3,3 +3,6 @@
 #contact .contact_link{
     color:red; 
 }
+ h1{position:relative;
+left:10em;}
+body{background:url(../images/bg.jpg);}

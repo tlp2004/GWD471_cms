@@ -1,5 +1,5 @@
 <header>
-        <h1>Welcome to Widgco Widgets</h1>
+        <h1>Support Women-Start-Ups</h1>
         <nav>
             <a href="index.php" class="home_link">Home</a>
             <a href="about.php" class="about_link">About</a>
