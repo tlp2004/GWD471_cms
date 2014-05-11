@@ -1,12 +1,37 @@
+
 <?php $page_id = 'about';?>
-<?php require_once('includes/top.php');?>
-<?php require_once('includes/header.php');?>
+<?php require_once('../../config.php'); ?>
+<?php
+//interact with database
+$sql = 'SELECT * FROM widgets';
+
+//send command to MySQL
+$myData = $db->query($sql)
+OR exit('unable to select data from table');
+
+//close db connection
+$db->close();
+?>
+
+<?php require_once('includes/top.php'); ?>
+<?php require_once('includes/header.php'); ?>
    <section>
        <h2>About</h2>
-       <p>
-             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-       </p>
+       <?php
+         echo '<div id="products">';
+          while($row = $myData->fetch_assoc())
+          {
+            echo '<div class="product">';
+            echo '<img src="" alt="" />';
+            echo '<h3>' . $row['name'] . '</h3>';
+            echo '<p>$' . $row['price'] . '</p>';
+            echo '<p>' . $row['description'] . '</p>';
+            echo '</div>';
+          }
+          echo '<br class="clear">';
+          echo '</div>';
+       ?>
    </section>
-    <?php require_once('includes/footer.php');?>
+  <?php require_once('includes/footer.php');?>
 </body>
 </html>
